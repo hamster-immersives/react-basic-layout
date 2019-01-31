@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+
+
 
 class App extends Component {
+
+  state = {
+    email: "",
+    password: ""
+  }
+
+  handleInput = (event) => {
+
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    console.log(this.state)
+
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.handleInput} name="email" />
+          <input onChange={this.handleInput} name="password" />
+          <button>Submit</button>
+        </form>
+        {`My email is: ${this.state.email} and my password is: ${this.state.password}`}
       </div>
     );
   }
